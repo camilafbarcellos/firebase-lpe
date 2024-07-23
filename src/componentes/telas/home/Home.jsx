@@ -4,35 +4,16 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import { getPostsFirebase } from '../../servicos/PostsService';
 
 function Home() {
 
-    const [listaObjetos, setListaObjetos] = useState([
-        {
-            id: '1xxx',
-            titulo: 'Usando Firebase',
-            texto: 'Como usar o Firebase',
-            url: 'https://firebase.google.com/docs/guides?hl=pt-br',
-            tipo: 'Documentação',
-            usuario: 'Jorge',
-            email: 'jlbavaresco@gmail.com',
-            uid: 'jj123'
-        },
-        {
-            id: '2xxx',
-            titulo: 'Analysis of Component Libraries for React JS',
-            texto: 'Analysis of Component Libraries for React JS',
-            url: 'https://iarjset.com/wp-content/uploads/2021/06/IARJSET.2021.8607.pdf',
-            tipo: 'Artigo',
-            usuario: 'Jorge',
-            email: 'jlbavaresco@gmail.com',
-            uid: 'jj123'
-        }
-    ]);
+    const [listaObjetos, setListaObjetos] = useState([]);
 
     useEffect(() => {
-
+        getPostsFirebase(setListaObjetos);
     }, []);
+
     return (
         <div style={{ padding: '20px' }}>
             <Typography variant="h5" component="div">
@@ -77,7 +58,6 @@ function Home() {
 
                 )}
             </Grid>
-
         </div>
     )
 }
